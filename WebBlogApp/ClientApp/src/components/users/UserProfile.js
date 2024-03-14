@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getUser } from '../../services/usersService';
+import { getUser, updateUser } from '../../services/usersService';
 import ImageComponent from '../ImageComponent';
 import ModalButton from '../ModalButton';
 import UserProfileCreation from './UserProfileCreation';
@@ -22,7 +22,7 @@ const UserProfile = () => {
         fetchUser();
     }, []);
 
-    const updateUser = (newUser) => {
+    const updateUserView = (newUser) => {
         setUser(newUser);
         updateUser(newUser);
     }
@@ -34,7 +34,7 @@ const UserProfile = () => {
             <p>Email: {user.email}</p>
             <p>Description: {user.description}</p>
             <ImageComponent byteArray={user.photo} />
-            <ModalButton modalContent={<UserProfileCreation user={user} setAction={updateUser} />} title='Редактирование профиля' />
+            <ModalButton modalContent={<UserProfileCreation user={user} setAction={updateUserView} />} title='Редактирование профиля' />
         </div>
     );
 };
